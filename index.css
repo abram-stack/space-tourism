@@ -107,6 +107,19 @@ select {
   gap: var(--gap, 1rem);
 }
 
+/* .flow > * + *    
+  ->no extra specificity to it. means, under flow ie: p, h. we set margin to 0. we need .flow margin top 1 to override that
+
+*/
+/* where : take flow and get all..()no specificity 
+ie: 
+card h1, card h2, card h3{} => card :where(h1, h2, h3) 
+*/
+.flow > *:where(:not(:first-child)){
+  margin-top: var(--flow-space,1rem);
+  /* outline: 1px solid red; */
+}
+
 .container {
   padding-inline: 2em;
   max-width: 60rem;
