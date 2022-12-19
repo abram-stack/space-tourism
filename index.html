@@ -4,17 +4,53 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Barlow:wght@400;700&family=Bellefair&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="index.css">
   <title>space tourism</title>
 </head>
-<body>
-  <h1>hello</h1>
-  <div class="container flex">
+<body class="home">
+  <header class="primary-header flex">
+    <!-- logo -->
+    <div>
+      <img src="assets/shared/logo.svg" alt="space tourism logo" class="logo">
+    </div>
 
-    <div class="box">a</div>
-    <div class="box">b</div>
-    <div class="box">c</div>
-    <div class="box">d</div>
+    <nav>
+      <ul class="primary-navigation underline-indicators flex">
+        <li><a href="index.html" class="uppercase ff-sans-cond text-white letter-spacing-2"><span>00</span>Home</a></li>
+        <li><a href="destination.html" class="uppercase ff-sans-cond text-white letter-spacing-2"><span>01</span>Destination</a></li>
+        <li><a href="crew.html" class="uppercase ff-sans-cond text-white letter-spacing-2"><span>02</span>Crew</a></li>
+        <li><a href="technology.html" class="uppercase text-white letter-spacing-2"><span>03</span>Technology</a></li>
+      </ul>
+    </nav>
+
+
+  </header>
+
+    
+  <div class="grid-container">
+    <div>
+      <h1 class="text-accent ff-sans-cond fs-500 uppercase letter-spacing-1">So, you want to travel to
+        <span class="fs-900 ff-serif uppercase text-white">Space</span></h1>
+      <p class="text-accent ff-sans-cond">
+        Let’s face it; if you want to go to space, you might as well genuinely go to
+        outer space and not hover kind of on the edge of it. Well sit back, and relax
+        because we’ll give you a truly out of this world experience!
+      </p>
+    </div>
+    <div>
+      <a href="#" class="large-button uppercase ff-serif fs-600 text-dark bg-white">explore</a>
+    </div>
+  </div>
+  </div>
+    
+    
   </div>
 </body>
 </html>

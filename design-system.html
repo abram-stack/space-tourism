@@ -108,6 +108,48 @@
           </div>
         </div>
       </section>
+
+      <section id="interactive">
+        <h2 class="numbered-title"><span>03</span>Interactive elements</h2>
+        <!-- navigation -->
+        <div>
+          <nav>
+            <ul class="primary-navigation underline-indicators flex">
+              <li class="active"><a href="#" class="uppercase text-white letter-spacing-2"><span>00</span>Active</a></li>
+              <li><a href="#" class="uppercase text-white letter-spacing-2"><span>01</span>Hover</a></li>
+              <li ><a href="#"class="uppercase text-white letter-spacing-2"><span>02</span>Idle</a></li>
+            </ul>
+          </nav>
+        </div>
+
+
+        <div class="flex" style="flex: 1;">
+          <div style="margin-top: 5rem;flex-basis: 100%;">
+            <!-- explore button -->
+            <a href="#" class="large-button uppercase ff-serif bg-white fs-600 text-dark">explore</a>
+          </div>
+          <div class="flow" style="margin-bottom: 50vh;--flow-space:4rem;flex-basis: 100%;">
+            <!-- tabs -->
+            <div class="tab-list underline-indicators flex">
+              <button aria-selected="true" class="bg-dark text-accent uppercase ff-sans-cond letter-spacing-2">Moon</button>
+              <button aria-selected="false" class="bg-dark text-accent uppercase ff-sans-cond letter-spacing-2">mars</button>
+              <button aria-selected="false" class="bg-dark text-accent uppercase ff-sans-cond letter-spacing-2">europa</button>
+            </div>
+            <!-- dot -->
+            <div class="dot-indicators flex">
+              <button aria-selected="true"><span class="sr-only">Slide Title</span></button>
+              <button aria-selected="false"><span class="sr-only">Slide Title</span></button>
+              <button aria-selected="false"><span class="sr-only">Slide Title</span></button>
+            </div>
+            <!-- numbers -->
+            <div class="number-indicators grid">
+              <button aria-selected="true" class="bg-dark ff-serif text-white fs-600">1</button>
+              <button aria-selected="false" class="bg-dark ff-serif text-white fs-600">2</button>
+              <button aria-selected="false" class="bg-dark ff-serif text-white fs-600">3</button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
 
     <script src="index.pack.js"></script>

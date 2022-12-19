@@ -115,17 +115,30 @@ select {
 ie: 
 card h1, card h2, card h3{} => card :where(h1, h2, h3) 
 */
-.flow > *:where(:not(:first-child)){
-  margin-top: var(--flow-space,1rem);
+.flow > *:where(:not(:first-child)) {
+  margin-top: var(--flow-space, 1rem);
   /* outline: 1px solid red; */
 }
 
 .container {
   padding-inline: 2em;
-  max-width: 60rem;
+  max-width: 80rem;
   margin-inline: auto;
 }
-/* screenreader only */
+.grid-container {
+  display: grid;
+  column-gap: var(--container-gap, 2rem);
+  grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(2rem, 1fr);
+}
+.grid-container > *:first-child{
+  outline: solid 1px red;
+  grid-column: 2;
+}
+.grid-container>*:last-child {
+  outline: solid 1px yellow;
+  grid-column: 3;
+}
+/* screenreader only, it makes the component content invisible*/
 .sr-only {
   position: absolute;
   width: 1px;
@@ -224,16 +237,121 @@ card h1, card h2, card h3{} => card :where(h1, h2, h3)
   line-height: 1.1;
 }
 
-
-.numbered-title{
+.numbered-title {
   text-transform: uppercase;
   font-family: var(--ff-sans-cod);
   font-size: var(--fs-500);
   letter-spacing: 4.72px;
 }
 
-.numbered-title span{
-  margin-right: .5em;
+.numbered-title span {
+  margin-right: 0.5em;
   font-weight: 700;
-  color: hsl(var(--clr-white)/.25);
+  color: hsl(var(--clr-white) / 0.25);
 }
+
+/* ------------------ */
+/* Component classes    */
+/* ------------------ */
+.large-button {
+  position: relative;
+  display: inline-grid;
+  z-index: 1;
+  place-items: center;
+  padding: 0 2em;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  text-decoration: none;
+}
+.large-button::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  background: hsl(var(--clr-white) / 0.15);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 500ms linear, transform 750ms ease-in-out;
+}
+
+.large-button:hover::after,
+.large-button:focus::after {
+  opacity: 1;
+  transform: scale(1.5);
+}
+
+.primary-navigation {
+  --gap: 8rem;
+  --underline-gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.primary-navigation a {
+  text-decoration: none;
+}
+.primary-navigation a > span {
+  font-weight: 700;
+  margin-right: 0.5em;
+}
+
+/* underline-indicator */
+.underline-indicators > * {
+  padding: var(--underline-gap, 1rem) 0;
+  border: 0;
+  cursor: pointer;
+  border-bottom: 0.2rem solid hsl(var(--clr-white) / 0);
+}
+
+.underline-indicators > *:hover,
+.underline-indicators > *:focus {
+  border-color: hsl(var(--clr-white) / 0.5);
+}
+
+.underline-indicators > .active,
+.underline-indicators > [aria-selected='true'] {
+  color: hsl(var(--clr-white) / 1);
+  border-color: hsl(var(--clr-white) / 1);
+}
+.tab-list {
+  --gap: 2rem;
+}
+
+.dot-indicators > * {
+  border: 0;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  padding: 0.5em;
+  cursor: pointer;
+  background-color: hsl(var(--clr-white) / 0.25);
+}
+
+.dot-indicators > *:hover,
+.dot-indicators > *:focus {
+  background-color: hsl(var(--clr-white) / 0.5);
+}
+
+.dot-indicators > [aria-selected='true'] {
+  background-color: hsl(var(--clr-white) / 1);
+}
+
+/* number-indicators */
+.number-indicators > * {
+  border-radius: 50%;
+  aspect-ratio: 1;
+  padding: 0.5em;
+  cursor: pointer;
+  border: 0.2rem solid hsl(var(--clr-white) / 0.5);
+}
+
+.number-indicators>*:hover,
+.number-indicators>*:focus {
+  border-color: hsl(var(--clr-white) / 1);
+  color: hsl(var(--clr-white));
+}
+
+.number-indicators>[aria-selected='true'] {
+  color: hsl(var(--clr-dark) / 1);
+  background-color: hsl(var(--clr-white));
+} 
