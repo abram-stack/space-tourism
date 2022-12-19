@@ -9,12 +9,12 @@
   --clr-white: 0 0% 100%;
 
   /* fontsize */
-  --fs-900: 9.375rem;
-  --fs-800: 6.25rem;
-  --fs-700: 3.5rem;
-  --fs-600: 2rem;
+  --fs-900: clamp(5rem, 8vw + 1rem, 9.375rem);
+  --fs-800: 3.5rem;
+  --fs-700: 1.5rem;
+  --fs-600: 1rem;
   --fs-500: 1.75rem;
-  --fs-400: 1.125rem;
+  --fs-400: 0.9375rem;
   --fs-300: 1rem;
   --fs-200: 0.875rem;
 
@@ -24,6 +24,27 @@
   --ff-sans-normal: 'Barlow', sans-serif;
 }
 
+/* tablet */
+@media (min-width: 35em) {
+  :root {
+    --fs-800: 5rem;
+    --fs-700: 2.5rem;
+    --fs-600: 1.5rem;
+    --fs-400: 1rem;
+  }
+}
+
+/* desktop */
+@media (min-width: 45em) {
+  :root {
+    /* font-sizes */
+    --fs-800: 6.25rem;
+    --fs-700: 3.5rem;
+    --fs-600: 2rem;
+    --fs-500: 1.75rem;
+    --fs-400: 1.125rem;
+  }
+}
 /* ------------------ */
 /* Reset              */
 /* ------------------ */
@@ -63,6 +84,9 @@ body {
   background-color: hsl(var(--clr-dark));
   line-height: 1.5;
   min-height: 100vh;
+
+  display: grid;
+  grid-template-rows: min-content 1fr;
 }
 
 /* makes working with picture easier */
@@ -101,12 +125,17 @@ select {
   display: flex;
   gap: var(--gap, 1rem);
 }
-
+.flex.even-columns > * {
+  width: 100%;
+}
 .grid {
   display: grid;
   gap: var(--gap, 1rem);
 }
 
+.d-block {
+  display: block;
+}
 /* .flow > * + *    
   ->no extra specificity to it. means, under flow ie: p, h. we set margin to 0. we need .flow margin top 1 to override that
 
@@ -126,18 +155,37 @@ card h1, card h2, card h3{} => card :where(h1, h2, h3)
   margin-inline: auto;
 }
 .grid-container {
+  text-align: center;
   display: grid;
-  column-gap: var(--container-gap, 2rem);
-  grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(2rem, 1fr);
+  place-items: center;
+  padding-inline: 1rem;
 }
-.grid-container > *:first-child{
-  outline: solid 1px red;
-  grid-column: 2;
+.grid-container * {
+  max-width: 45ch;
 }
-.grid-container>*:last-child {
-  outline: solid 1px yellow;
-  grid-column: 3;
+
+@media (min-width: 45em) {
+  .grid-container {
+    text-align: left;
+    column-gap: var(--container-gap, 2rem);
+    grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(
+        2rem,
+        1fr
+      );
+  }
+  .grid-container > *:first-child {
+    grid-column: 2;
+  }
+  .grid-container > *:last-child {
+    grid-column: 3;
+  }
+
+  .grid-container--home{
+    padding-bottom: max(6rem, 20vh);
+    align-items: end;
+  }
 }
+
 /* screenreader only, it makes the component content invisible*/
 .sr-only {
   position: absolute;
@@ -254,6 +302,7 @@ card h1, card h2, card h3{} => card :where(h1, h2, h3)
 /* Component classes    */
 /* ------------------ */
 .large-button {
+  font-size: 2rem;
   position: relative;
   display: inline-grid;
   z-index: 1;
@@ -345,13 +394,42 @@ card h1, card h2, card h3{} => card :where(h1, h2, h3)
   border: 0.2rem solid hsl(var(--clr-white) / 0.5);
 }
 
-.number-indicators>*:hover,
-.number-indicators>*:focus {
+.number-indicators > *:hover,
+.number-indicators > *:focus {
   border-color: hsl(var(--clr-white) / 1);
   color: hsl(var(--clr-white));
 }
 
-.number-indicators>[aria-selected='true'] {
+.number-indicators > [aria-selected='true'] {
   color: hsl(var(--clr-dark) / 1);
   background-color: hsl(var(--clr-white));
-} 
+}
+
+
+
+/* ----------------------------- */
+/* Page Speicific Background     */
+/* ------------------------------*/
+
+body {
+  background-size: cover;
+  background-position: bottom center;
+}
+
+/* home */
+.home {
+  background-image: url(./assets/home/background-home-mobile.jpg);
+}
+
+@media (min-width: 35rem) {
+  .home {
+    background-position: center center;
+    background-image: url(./assets/home/background-home-tablet.jpg);
+  }
+}
+
+@media (min-width: 45rem) {
+  .home {
+    background-image: url(./assets/home/background-home-desktop.jpg);
+  }
+}
