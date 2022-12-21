@@ -1,6 +1,6 @@
-/* ------------------ */
-/* custom properties  */
-/* ------------------ */
+/* ------------------- */
+/* Custom properties   */
+/* ------------------- */
 
 :root {
   /* colors */
@@ -8,7 +8,7 @@
   --clr-light: 231 77% 90%;
   --clr-white: 0 0% 100%;
 
-  /* fontsize */
+  /* font-sizes */
   --fs-900: clamp(5rem, 8vw + 1rem, 9.375rem);
   --fs-800: 3.5rem;
   --fs-700: 1.5rem;
@@ -18,13 +18,12 @@
   --fs-300: 1rem;
   --fs-200: 0.875rem;
 
-  /* fontfamily */
+  /* font-families */
   --ff-serif: 'Bellefair', serif;
-  --ff-sans-cod: 'Barlow condensed', sans-serif;
+  --ff-sans-cond: 'Barlow Condensed', sans-serif;
   --ff-sans-normal: 'Barlow', sans-serif;
 }
 
-/* tablet */
 @media (min-width: 35em) {
   :root {
     --fs-800: 5rem;
@@ -35,7 +34,6 @@
   }
 }
 
-/* desktop */
 @media (min-width: 45em) {
   :root {
     /* font-sizes */
@@ -46,18 +44,21 @@
     --fs-400: 1.125rem;
   }
 }
-/* ------------------ */
-/* Reset              */
-/* ------------------ */
 
-/* box sizing */
+/* ------------------- */
+/* Reset               */
+/* ------------------- */
+
+/* https://piccalil.li/blog/a-modern-css-reset/ */
+
+/* Box sizing */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* reset margins */
+/* Reset margins */
 body,
 h1,
 h2,
@@ -69,6 +70,7 @@ figure,
 picture {
   margin: 0;
 }
+
 h1,
 h2,
 h3,
@@ -78,6 +80,8 @@ h6,
 p {
   font-weight: 400;
 }
+
+/* set up the body */
 body {
   font-family: var(--ff-sans-normal);
   font-size: var(--fs-400);
@@ -88,17 +92,18 @@ body {
 
   display: grid;
   grid-template-rows: min-content 1fr;
+
   overflow-x: hidden;
 }
 
-/* makes working with picture easier */
+/* make images easier to work with */
 img,
 picture {
   max-width: 100%;
-  display: block;
+  /* display: block; */
 }
 
-/* makes working with form element easier */
+/* make form elements easier to work with */
 input,
 button,
 textarea,
@@ -106,9 +111,7 @@ select {
   font: inherit;
 }
 
-/* remove animations, for people who've turned them off */
-/* browser / os setting */
-/* disable motion, not causing problem -> accessibility */
+/* remove animations for people who've turned them off */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -120,22 +123,17 @@ select {
   }
 }
 
-/* ------------------ */
-/* Utility classes    */
-/* ------------------ */
-.container {
-  padding-inline: 2em;
-  max-width: 80rem;
-  margin-inline: auto;
-}
+/* ------------------- */
+/* Utility classes     */
+/* ------------------- */
+
+/* general */
 
 .flex {
   display: flex;
   gap: var(--gap, 1rem);
 }
-.flex.even-columns > * {
-  width: 100%;
-}
+
 .grid {
   display: grid;
   gap: var(--gap, 1rem);
@@ -154,12 +152,18 @@ card h1, card h2, card h3{} => card :where(h1, h2, h3)
 */
 .flow > *:where(:not(:first-child)) {
   margin-top: var(--flow-space, 1rem);
-  /* outline: 1px solid red; */
 }
-.flow--space-small{
-  --flow-space:.75rem;
+
+.flow--space-small {
+  --flow-space: 0.75rem;
 }
-/* screenreader only, it makes the component content invisible*/
+
+.container {
+  padding-inline: 2em;
+  margin-inline: auto;
+  max-width: 80rem;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -173,13 +177,31 @@ card h1, card h2, card h3{} => card :where(h1, h2, h3)
   border: 0;
 }
 
+.skip-to-content {
+  position: absolute;
+  z-index: 9999;
+  background: hsl(var(--clr-white));
+  color: hsl(var(--clr-dark));
+  padding: 0.5em 1em;
+  margin-inline: auto;
+  transform: translateY(-100%);
+  transition: transform 250ms ease-in;
+}
+
+.skip-to-content:focus {
+  transform: translateY(0);
+}
+
 /* colors */
+
 .bg-dark {
   background-color: hsl(var(--clr-dark));
 }
+
 .bg-accent {
   background-color: hsl(var(--clr-light));
 }
+
 .bg-white {
   background-color: hsl(var(--clr-white));
 }
@@ -187,24 +209,25 @@ card h1, card h2, card h3{} => card :where(h1, h2, h3)
 .text-dark {
   color: hsl(var(--clr-dark));
 }
+
 .text-accent {
   color: hsl(var(--clr-light));
 }
+
 .text-white {
   color: hsl(var(--clr-white));
 }
 
-.example-component {
-  background-color: hsl(var(--clr-light) / 0.2);
-}
-
 /* typography */
+
 .ff-serif {
   font-family: var(--ff-serif);
 }
+
 .ff-sans-cond {
-  font-family: var(--ff-sans-cod);
+  font-family: var(--ff-sans-cond);
 }
+
 .ff-sans-normal {
   font-family: var(--ff-sans-normal);
 }
@@ -212,9 +235,11 @@ card h1, card h2, card h3{} => card :where(h1, h2, h3)
 .letter-spacing-1 {
   letter-spacing: 4.75px;
 }
+
 .letter-spacing-2 {
   letter-spacing: 2.7px;
 }
+
 .letter-spacing-3 {
   letter-spacing: 2.35px;
 }
@@ -226,15 +251,19 @@ card h1, card h2, card h3{} => card :where(h1, h2, h3)
 .fs-900 {
   font-size: var(--fs-900);
 }
+
 .fs-800 {
   font-size: var(--fs-800);
 }
+
 .fs-700 {
   font-size: var(--fs-700);
 }
+
 .fs-600 {
   font-size: var(--fs-600);
 }
+
 .fs-500 {
   font-size: var(--fs-500);
 }
@@ -259,9 +288,9 @@ card h1, card h2, card h3{} => card :where(h1, h2, h3)
 }
 
 .numbered-title {
-  text-transform: uppercase;
-  font-family: var(--ff-sans-cod);
+  font-family: var(--ff-sans-cond);
   font-size: var(--fs-500);
+  text-transform: uppercase;
   letter-spacing: 4.72px;
 }
 
@@ -277,21 +306,22 @@ card h1, card h2, card h3{} => card :where(h1, h2, h3)
 .large-button {
   font-size: 2rem;
   position: relative;
-  display: inline-grid;
   z-index: 1;
+  display: inline-grid;
   place-items: center;
   padding: 0 2em;
   border-radius: 50%;
   aspect-ratio: 1;
   text-decoration: none;
 }
+
 .large-button::after {
   content: '';
   position: absolute;
   z-index: -1;
-  background: hsl(var(--clr-white) / 0.15);
   width: 100%;
   height: 100%;
+  background: hsl(var(--clr-white) / 0.1);
   border-radius: 50%;
   opacity: 0;
   transition: opacity 500ms linear, transform 750ms ease-in-out;
@@ -302,10 +332,10 @@ card h1, card h2, card h3{} => card :where(h1, h2, h3)
   opacity: 1;
   transform: scale(1.5);
 }
-/* Primary header */
+
+/* primary-header */
 
 .logo {
-  /* top bottom value solid 2 rem, and grow leftright, with (min, middle, max) */
   margin: 1.5rem clamp(1.5rem, 5vw, 3.5rem);
 }
 
@@ -313,13 +343,14 @@ card h1, card h2, card h3{} => card :where(h1, h2, h3)
   justify-content: space-between;
   align-items: center;
 }
+
 .primary-navigation {
   --gap: clamp(1.5rem, 5vw, 3.5rem);
   --underline-gap: 2rem;
   list-style: none;
   padding: 0;
   margin: 0;
-  background: hsl(var(--clr-light) / 0.05);
+  background: hsl(var(--clr-white) / 0.05);
   backdrop-filter: blur(1.5rem);
 }
 
@@ -344,19 +375,18 @@ card h1, card h2, card h3{} => card :where(h1, h2, h3)
     inset: 0 0 0 30%;
     list-style: none;
     padding: min(20rem, 15vh) 2rem;
-    margin: 0rem;
+    margin: 0;
     flex-direction: column;
     transform: translateX(100%);
     transition: transform 500ms ease-in-out;
   }
 
-  /* check if data-visible === true */
   .primary-navigation[data-visible='true'] {
     transform: translateX(0);
   }
 
-  .mobile-nav-toggle[aria-expanded='true'] {
-    background-image: url(./assets/shared/icon-close.svg);
+  .primary-navigation.underline-indicators > .active {
+    border: 0;
   }
 
   .mobile-nav-toggle {
@@ -365,25 +395,28 @@ card h1, card h2, card h3{} => card :where(h1, h2, h3)
     z-index: 2000;
     right: 1rem;
     top: 2rem;
-    border: 0;
     background: transparent;
     background-image: url(./assets/shared/icon-hamburger.svg);
-    background-position: center;
     background-repeat: no-repeat;
+    background-position: center;
     width: 1.5rem;
     aspect-ratio: 1;
-  }
-  .mobile-nav-toggle:focus-visible {
-    outline: 2px solid white;
-  }
-  .primary-navigation.underline-indicators > .active {
     border: 0;
+  }
+
+  .mobile-nav-toggle[aria-expanded='true'] {
+    background-image: url(./assets/shared/icon-close.svg);
+  }
+
+  .mobile-nav-toggle:focus-visible {
+    outline: 5px solid white;
+    outline-offset: 5px;
   }
 }
 
 @media (min-width: 35em) {
   .primary-navigation {
-    padding-inline: clamp(3rem, 10vw, 7rem);
+    padding-inline: clamp(3rem, 7vw, 7rem);
   }
 }
 
@@ -400,24 +433,24 @@ card h1, card h2, card h3{} => card :where(h1, h2, h3)
     position: relative;
     height: 1px;
     width: 100%;
-    background: hsl(var(--clr-light) / 0.25);
     margin-right: -2.5rem;
+    background: hsl(var(--clr-white) / 0.25);
     order: 1;
   }
 
   nav {
     order: 2;
   }
+
   .primary-navigation {
     margin-block: 2rem;
   }
 }
 
-/* underline-indicator */
 .underline-indicators > * {
-  padding: var(--underline-gap, .5rem) 0;
-  border: 0;
   cursor: pointer;
+  padding: var(--underline-gap, 0.5rem) 0;
+  border: 0;
   border-bottom: 0.2rem solid hsl(var(--clr-white) / 0);
   background-color: transparent;
 }
@@ -432,16 +465,16 @@ card h1, card h2, card h3{} => card :where(h1, h2, h3)
   color: hsl(var(--clr-white) / 1);
   border-color: hsl(var(--clr-white) / 1);
 }
+
 .tab-list {
   --gap: 2rem;
 }
 
 .dot-indicators > * {
+  cursor: pointer;
   border: 0;
   border-radius: 50%;
-  aspect-ratio: 1;
   padding: 0.5em;
-  cursor: pointer;
   background-color: hsl(var(--clr-white) / 0.25);
 }
 
@@ -454,30 +487,9 @@ card h1, card h2, card h3{} => card :where(h1, h2, h3)
   background-color: hsl(var(--clr-white) / 1);
 }
 
-/* number-indicators */
-.number-indicators > * {
-  border-radius: 50%;
-  aspect-ratio: 1;
-  padding: 0.5em;
-  cursor: pointer;
-  border: 0.2rem solid hsl(var(--clr-white) / 0.5);
-}
-
-.number-indicators > *:hover,
-.number-indicators > *:focus {
-  border-color: hsl(var(--clr-white) / 1);
-  color: hsl(var(--clr-white));
-}
-
-.number-indicators > [aria-selected='true'] {
-  color: hsl(var(--clr-dark) / 1);
-  background-color: hsl(var(--clr-white));
-}
-
 /* ----------------------------- */
-/* Page Speicific Background     */
-/* ------------------------------*/
-
+/* Page specific background      */
+/* ----------------------------- */
 body {
   background-size: cover;
   background-position: bottom center;
@@ -536,19 +548,19 @@ body {
     background-image: url(./assets/crew/background-crew-desktop.jpg);
   }
 }
+
 /* ----------------------------- */
-/* Layout                      */
-/* ------------------------------*/
+/* Layout                        */
+/* ----------------------------- */
 
 .grid-container {
   text-align: center;
   display: grid;
   place-items: center;
   padding-inline: 1rem;
-  padding-bottom: 3rem;
+  padding-bottom: 4rem;
 }
 
-/* any para that doesnt have class applied to it */
 .grid-container p:not([class]) {
   max-width: 50ch;
 }
@@ -556,6 +568,8 @@ body {
 .numbered-title {
   grid-area: title;
 }
+
+/* destination layout */
 
 .grid-container--destination {
   --flow-space: 2rem;
@@ -586,15 +600,13 @@ body {
   padding-top: 2.5rem;
   margin-top: 2.5rem;
 }
+
 .destination-meta p {
   font-size: 1.75rem;
 }
 
-.crew-details h2{
-  color: hsl(var(--clr-light) / 0.5);
-}
-
 /* crew layout */
+
 .grid-container--crew {
   --flow-space: 2rem;
   grid-template-areas:
@@ -616,6 +628,10 @@ body {
 
 .grid-container--crew > .crew-details {
   grid-area: content;
+}
+
+.crew-details h2 {
+  color: hsl(var(--clr-white) / 0.5);
 }
 
 @media (min-width: 35em) {
@@ -653,6 +669,7 @@ body {
     padding-bottom: max(6rem, 20vh);
     align-items: end;
   }
+
   .grid-container--home > *:first-child {
     grid-column: 2;
   }
@@ -676,10 +693,7 @@ body {
   }
 
   .destination-meta {
-    /* choose between smaller */
-    /* if biggersize: 4vw will be big, and 6rem is smaller */
-    /* and if we get smaller size, 15vw will be smaller than 6rem */
-    --gap: min(4vw, 6rem);
+    --gap: min(6vw, 6rem);
     justify-content: start;
   }
 
@@ -695,4 +709,8 @@ body {
   .grid-container--crew > .dot-indicators {
     justify-self: start;
   }
+
+  /* .grid-container--crew > picture {
+        align-self: end;
+    } */
 }
