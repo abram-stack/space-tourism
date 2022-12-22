@@ -584,6 +584,7 @@ body {
 .grid-container--destination > picture {
   grid-area: image;
   max-width: 60%;
+  align-self: start;
 }
 
 .grid-container--destination > .tab-list {
@@ -620,6 +621,7 @@ body {
   grid-area: image;
   max-width: 60%;
   border-bottom: 1px solid hsl(var(--clr-white) / 0.1);
+  align-self: start;
 }
 
 .grid-container--crew > .dot-indicators {
@@ -687,8 +689,7 @@ body {
       '. image content .';
   }
 
-  .grid-container--destination > picture,
-  .grid-container--crew > picture {
+  .grid-container--destination > picture{
     max-width: 90%;
   }
 
@@ -698,19 +699,24 @@ body {
   }
 
   .grid-container--crew {
+    grid-template-columns: minmax(2rem, 1fr) minmax(0, 35rem) minmax(0, 25rem) minmax(
+        2rem,
+        1fr
+      );
     grid-template-areas:
       '. title title .'
       '. content image .'
       '. tabs image.';
     justify-items: start;
-    align-content: start;
   }
 
   .grid-container--crew > .dot-indicators {
     justify-self: start;
   }
 
-  /* .grid-container--crew > picture {
-        align-self: end;
-    } */
+  .grid-container--crew > picture {
+    align-self: end;
+    max-width: 90%;
+    grid-column: span 2;
+  }
 }
